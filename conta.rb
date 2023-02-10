@@ -1,3 +1,5 @@
+require_relative 'cliente'    
+
 class Conta
   attr_reader :numero, :titular
   attr_accessor :saldo
@@ -6,7 +8,25 @@ class Conta
   @numero = numero
   @titular = titular
   @saldo = saldo
-    end
+  end
+  
+  def sacar(valor)
+    if saldo >= valor
+     self.saldo -= valor
+    else
+       puts "Não foi possível executar o saque saldo"
+   end
+  end
+  
+  def depositar(valor)
+    self.saldo += valor
 end
 
+  def transferir(conta_destino, valor)
+    sacar(valor)
+    conta_destino.depositar(valor)
     
+  end
+end  
+
+   
